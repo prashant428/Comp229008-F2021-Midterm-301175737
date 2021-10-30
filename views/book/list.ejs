@@ -10,7 +10,7 @@
             <!-- Fix the ADD button below -->
             <!-- ------------------------ -->
             <a href="/book/add" class="btn btn-primary align-self-end" role="button">
-                <i class="fas fa-plus-circle"></i> 
+                <i class="fas fa-plus-circle"></i> <!--redirecting the user to /book/add page-->
                 Add a new Item
             </a>                
         </div>
@@ -46,14 +46,14 @@
                             <!-- Fix the EDIT button below -->
                             <!-- ------------------------ -->
                             <a href="/book/edit/<%=books[count]._id%>" class="btn btn-primary btn-sm">
-                            <i class="fas fa-pencil-alt"></i>Edit</a>
+                            <i class="fas fa-pencil-alt"></i>Edit</a> <!--redirecting the user to /book/edit/:id page  -->
                         </td>
                         <td class="text-center">
                             <!-- --------------------------- -->
                             <!-- Fix the DELETE button below -->
                             <!-- --------------------------- -->
                             <a href="/book/delete/<%=books[count]._id%>" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>Delete</a>
+                            <i class="fas fa-trash-alt"></i>Delete</a><!--redirecting the user to /book/edit/:id page -->
                         </td>
                     </tr>
                 <% } %>

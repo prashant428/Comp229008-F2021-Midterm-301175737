@@ -1,3 +1,8 @@
+/* Filename: book.js
+    Author's name: Prashant Sharma
+    Student ID: 301175737
+    Web App Name: Come229008-F2021-Midterm-301175737 */
+
 // create a reference to the model
 let Book = require('../models/book');
 
@@ -45,7 +50,7 @@ module.exports.displayAddPage = (req, res, next) => {
     
     // ADD YOUR CODE HERE       
     res.render('book/add_edit', {title: "Add/Edit Book",
-             book: ""})
+             book: ""}) //rendering the add/edit page and passing the title 
         
 
 
@@ -55,20 +60,20 @@ module.exports.displayAddPage = (req, res, next) => {
 module.exports.processAddPage = (req, res, next) => {
 
     // ADD YOUR CODE HERE
-    let newBook= Book({
+    let newBook= Book({ //defining new book
         "Title":req.body.Title,
         "Description": req.body.Description,
         "Price": req.body.Price,
         "Author": req.body.Author,
         "Genre": req.body.Genre
     });
-    Book.create(newBook, (err)=>{
+    Book.create(newBook, (err)=>{ //creating new book
         if(err){
             console.log(err);
             res.end(err);
         }else{
-            //refresh the book list
-            res.redirect('/book/list');
+            //refresh the book list and redirect the user to it
+            res.redirect('/book/list'); 
         }
     })
 }
@@ -81,14 +86,14 @@ module.exports.displayEditPage = (req, res, next) => {
     // ADD YOUR CODE HERE
     let id=req.params.id;
 
-    Book.findById(id, (err, bookToEdit)=>{
+    Book.findById(id, (err, bookToEdit)=>{ //finding book by id
         if(err){
             console.log(err);
             res.end(err);
         }
         else{
-            res.render('book/add_edit', {title: "Add/Edit Book",
-             book: bookToEdit})
+            res.render('book/add_edit', {title: "Add/Edit Book", 
+             book: bookToEdit}) //rendering the add/edit page and passing the Book object and title
         }
     });
 }
@@ -100,7 +105,7 @@ module.exports.processEditPage = (req, res, next) => {
     // ADD YOUR CODE HERE
     let id=req.params.id
 
-    let updatedBook=Book({
+    let updatedBook=Book({ //defining the updated book
         "_id": id,
         "Title":req.body.Title,
         "Description": req.body.Description,
@@ -109,13 +114,13 @@ module.exports.processEditPage = (req, res, next) => {
         "Genre": req.body.Genre
     });
 
-    Book.updateOne({_id: id}, updatedBook, (err)=>{
+    Book.updateOne({_id: id}, updatedBook, (err)=>{ //updating the book
         if(err){
             console.log(err);
              res.end(err);
         }
         else{
-            //refresh the book list
+            //refreshing the book list and redirecting the user to it
             res.redirect('/book/list');
         }
     });
@@ -129,13 +134,13 @@ module.exports.performDelete = (req, res, next) => {
     // ADD YOUR CODE HERE
     let id=req.params.id;
 
-    Book.remove({_id: id}, (err)=>{
+    Book.remove({_id: id}, (err)=>{ //removing the book with the given id
         if(err){
             console.log(err);
             res.end(err);
         }
         else{
-            //refresh the book list
+            //refreshing the book list and redirecting the user back to it
             res.redirect('/book/list');
         }
     });
